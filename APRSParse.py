@@ -113,14 +113,17 @@ def writeFile():
 
             lat = data[:data.find('N')]
             lat = str(int(float(lat)*100)/10000)
+            print(lat)
 
-            lon = data[data.find('/')+1 : data.find('W')]
+            lon = data[data.find('/')+1 : data.find('E')]
             lon = str(int(float(lon)*100)/10000)
+            print(lon)
 
             alt = data[data.find('=')+1 : data.find(',')]
             alt = str(int(alt))
             altInt = int(alt)
             altMInt = altInt * 0.3048
+            print(altMInt)
 
             packetNumberString = data[data.find('StrTrk,') + 7 :]
             packetNumber = int(packetNumberString[: packetNumberString.find(',')])
@@ -171,7 +174,7 @@ def writeFile():
 
                         ind+=1
 
-                        csvString = "C: " + date + "," + hour + ":" + minute + ":" + second + "," + lat + "," + lon + "," + alt + "," + str(altMInt) + "," + str(packetNumber) + "," + str(temperature) + "," + str(temperatureF) + "," + str(pressure) + "," + str(flightMinutes) + ",,," + junk + "\n"
+                        csvString = "C: " + date + "," + hour + ":" + minute + ":" + second + "," + lat + "," + lon + "," + alt + "," + str(altMInt) + "," + str(packetNumber) + "," + str(temperature) + "," + str(temperatureF) + "," + str(pressure) + "," + str(flightMinutesInt) + ",,," + junk + "\n"
                         parsedFile.write(csvString)
 
         except:
